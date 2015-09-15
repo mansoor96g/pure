@@ -5,6 +5,7 @@ def connect(path):
     connection = sqlite3.connect(path)
     connection.row_factory = sqlite3.Row
     connection.text_factory = str
+    return connection
 
 
 def toid(text, delim = '-'):
