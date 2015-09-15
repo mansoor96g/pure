@@ -41,3 +41,18 @@ def log(*args, **kws):
 
     print '\t'.join(strargs) + '\t' + '\t'.join(pairs)
 
+def csv_dict(path, key = None):
+    import csv
+    import collections
+
+    result = collections.OrderedDict()
+    with open(path) as f:
+        reader = csv.DictReader(f, delimiter = '\t')
+        if key is None:
+            key = reader.fieldnames[0]
+
+
+        for row in reader:
+            k = row[key]
+            result[k] = row
+    return result
