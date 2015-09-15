@@ -1,4 +1,5 @@
 
+
 def connect(path):
     import sqlite3
     connection = sqlite3.connect(path)
@@ -6,7 +7,7 @@ def connect(path):
     connection.text_factory = str
 
 
-def toid(text, delim='-'):
+def toid(text, delim = '-'):
     if text is None:
         return ''
 
@@ -21,6 +22,21 @@ def toid(text, delim='-'):
             result.append(delim)
 
     result = ''.join(result)
-    while (delim+delim in result):
-        result = result.replace(delim+delim, delim)
+    while (delim + delim in result):
+        result = result.replace(delim + delim, delim)
     return result[1:-1]
+
+
+def log(*args, **kws):
+    import collections
+
+    strargs = [str(a) for a in args]
+    pairs = []
+
+    for k, v in kws.items():
+        k = str(k)
+        v = str(v)
+        pairs.append(k + ': ' + v)
+
+    print '\t'.join(strargs) + '\t' + '\t'.join(pairs)
+
