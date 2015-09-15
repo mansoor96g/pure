@@ -1,3 +1,4 @@
 # pure
 
-Collection of python functions and shorthands intended for copy paste usages.
+Collection of python functions and shorthands. Intended for copy-paste. *pure.py* contains
+the functions and docs.
