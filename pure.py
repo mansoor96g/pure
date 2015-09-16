@@ -28,6 +28,7 @@ def toid(text, delim = '-'):
     return result[1:-1]
 
 
+
 def log(*args, **kws):
     import collections
 
@@ -39,20 +40,45 @@ def log(*args, **kws):
         v = str(v)
         pairs.append(k + ': ' + v)
 
-    print '\t'.join(strargs) + '\t' + '\t'.join(pairs)
+    content = '\t'.join(strargs) + '\t' + '\t'.join(pairs)
+    if 'logfile' in globals():
+        logfile.write(content)
+        logfile.write('\n')
+    else:
+        print content
 
-def csv_dict(path, key = None):
+def csv_dict(path, key = None, delimiter = '\t'):
     import csv
     import collections
 
     result = collections.OrderedDict()
     with open(path) as f:
-        reader = csv.DictReader(f, delimiter = '\t')
+        reader = csv.DictReader(f, delimiter = delimiter)
         if key is None:
             key = reader.fieldnames[0]
-
 
         for row in reader:
             k = row[key]
             result[k] = row
     return result
+
+
+def csv_array(path, delimiter = '\t'):
+    import csv
+    import collections
+
+    result = []
+    with open(path) as f:
+        reader = csv.DictReader(f, delimiter = delimiter)
+
+        for row in reader:
+            result.append(row)
+    return result
+
+
+
+def get_md5(data):
+    import hashlib
+    md5 = hashlib.md5()
+    md5.update(text)
+    return md5.hexdigest()
