@@ -82,3 +82,13 @@ def get_md5(data):
     md5 = hashlib.md5()
     md5.update(text)
     return md5.hexdigest()
+
+
+def datestr(fmt='%s'):
+    import datetime
+    return datetime.datetime.now().strftime(fmt)
+
+def current_folder_name():
+    path = os.path.abspath(os.curdir)
+    folder = os.path.basename(path)
+    return folder
