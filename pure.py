@@ -102,5 +102,3 @@ def ensure_dir(path):
             os.makedirs(parent)
     except:
         pass
-
-connect('test.db')
