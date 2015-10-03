@@ -2,7 +2,7 @@
 
 def connect(path):
     import sqlite3
-    connection = sqlite3.connect(path)
+    connection = sqlite3.connect(path, timeout=15)
     connection.row_factory = sqlite3.Row
     connection.text_factory = str
     return connection
@@ -92,3 +92,15 @@ def current_folder_name():
     path = os.path.abspath(os.curdir)
     folder = os.path.basename(path)
     return folder
+
+
+def ensure_dir(path):
+    abspath = os.path.abspath(path)
+    try:
+        parent = os.path.dirname(abspath)
+        if not os.path.exists(parent):
+            os.makedirs(parent)
+    except:
+        pass
+
+connect('test.db')
