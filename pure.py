@@ -1,6 +1,11 @@
 
 
 def connect(path):
+    """ to connect sql 
+    take path 
+    return coonection
+    """
+  
     import sqlite3
     connection = sqlite3.connect(path, timeout=15)
     connection.row_factory = sqlite3.Row
@@ -9,6 +14,9 @@ def connect(path):
 
 
 def toid(text, delim = '-'):
+    """ to extracat numbers and characters
+    from other pantuatnion
+    """
     if text is None:
         return ''
 
@@ -48,6 +56,7 @@ def log(*args, **kws):
         print content
 
 def csv_dict(path, key = None, delimiter = '\t'):
+     """ to convert csv to dictonary of arrayes"""
     import csv
     import collections
 
@@ -64,6 +73,7 @@ def csv_dict(path, key = None, delimiter = '\t'):
 
 
 def csv_array(path, delimiter = '\t'):
+     """ to convert csv to array"""
     import csv
     import collections
 
@@ -89,12 +99,14 @@ def datestr(fmt='%s'):
     return datetime.datetime.now().strftime(fmt)
 
 def current_folder_name():
+    """ return cuurent folder name uses:os.curdir """
     path = os.path.abspath(os.curdir)
     folder = os.path.basename(path)
     return folder
 
 
 def ensure_dir(path):
+    """chick if the directory exist"""
     abspath = os.path.abspath(path)
     try:
         parent = os.path.dirname(abspath)
